@@ -62,7 +62,7 @@ indent "Save ORACLE_HOME to ENV_DIR"
 
 open(File.join(ENV_DIR,'ORACLE_HOME'), 'w') do |f|
   f.puts "/app/#{ORACLE_INSTANT_CLIENT_DIR}"
-  ident "ORACLE_HOME=/app/#{ORACLE_INSTANT_CLIENT_DIR}"
+  indent "ORACLE_HOME=/app/#{ORACLE_INSTANT_CLIENT_DIR}"
 end
 
 indent "Save TNS_ADMIN to ENV_DIR"
