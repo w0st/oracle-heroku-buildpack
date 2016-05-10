@@ -74,32 +74,10 @@ end
 
 indent "Save build LD_LIBRARY_PATH to ENV_DIR"
 
-LD_LIBRARY_PATH_FILE = File.join(ENV_DIR, 'LD_LIBRARY_PATH')
-existing_ld_library_path = `cat #{LD_LIBRARY_PATH_FILE}`  if File.exists?(LD_LIBRARY_PATH_FILE)
-
 open(File.join(ENV_DIR,'LD_LIBRARY_PATH'), 'w') do |f|
-  value = "#{BUILD_DIR}/#{ORACLE_INSTANT_CLIENT_DIR}"
-  unless existing_ld_library_path.nil? || existing_ld_library_path.trim.empty?
-    value += ":#{existing_ld_library_path}"
-  end
+  value = "/app/#{ORACLE_INSTANT_CLIENT_DIR}"
+  f.puts value
   indent "LD_LIBRARY_PATH=#{value}"
-  f.puts value
 end
-
-indent "Save build PATH to ENV_DIR"
-
-PATH_FILE = File.join(ENV_DIR, 'PATH')
-existing_path = `cat #{PATH_FILE}` if File.exists?(PATH_FILE)
-
-open(File.join(ENV_DIR,'PATH'), 'w') do |f|
-  value = "#{ORACLE_HOME}"
-  unless existing_path.nil? || existing_path.trim.empty?
-    value += ":#{existing_path}"
-  end
-  indent "PATH=#{value}"
-  f.puts value
-end
-
-
 
 indent "Done!"
