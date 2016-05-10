@@ -62,12 +62,14 @@ indent "Save ORACLE_HOME to ENV_DIR"
 
 open(File.join(ENV_DIR,'ORACLE_HOME'), 'w') do |f|
   f.puts "/app/#{ORACLE_INSTANT_CLIENT_DIR}"
+  ident "ORACLE_HOME=/app/#{ORACLE_INSTANT_CLIENT_DIR}"
 end
 
 indent "Save TNS_ADMIN to ENV_DIR"
 
 open(File.join(ENV_DIR,'TNS_ADMIN'), 'w') do |f|
   f.puts "#{ORACLE_HOME}/network/admin"
+  indent "TNS_ADMIN=#{ORACLE_HOME}/network/admin"
 end
 
 indent "Save build LD_LIBRARY_PATH to ENV_DIR"
@@ -80,6 +82,7 @@ open(File.join(ENV_DIR,'LD_LIBRARY_PATH'), 'w') do |f|
   unless existing_ld_library_path.nil? || existing_ld_library_path.trim.empty?
     value += ":#{existing_ld_library_path}"
   end
+  indent "LD_LIBRARY_PATH=#{value}"
   f.puts value
 end
 
@@ -93,7 +96,10 @@ open(File.join(ENV_DIR,'PATH'), 'w') do |f|
   unless existing_path.nil? || existing_path.trim.empty?
     value += ":#{existing_path}"
   end
+  indent "PATH=#{value}"
   f.puts value
 end
+
+
 
 indent "Done!"
