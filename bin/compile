@@ -16,7 +16,7 @@ puts "-----> Found an .oracle.yml"
 ORACLE_CONFIG = YAML.load_file("#{BUILD_DIR}/.oracle.yml")
 
 ORACLE_INSTANT_CLIENT_DIR="vendor/oracle_instantclient"
-ORACLE_INSTANT_CLIENT_URL="https://www.dropbox.com/s/ro5rfqwgtjdo75b/oracle-instantclient-full-11.2-linux.x64.tar.gz"
+ORACLE_INSTANT_CLIENT_URL="https://s3.amazonaws.com/dtm-development/oracle_instantclient/instantclient-basic-linux.x64-11.2.0.3.0.zip"
 ORACLE_INSTANT_CLIENT_FILENAME=ORACLE_INSTANT_CLIENT_URL.split(/\//).last
 
 indent "Making directory #{BUILD_DIR}/#{ORACLE_INSTANT_CLIENT_DIR}"
