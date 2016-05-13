@@ -23,7 +23,8 @@ indent "Making directory #{BUILD_DIR}/#{ORACLE_INSTANT_CLIENT_DIR}"
 `mkdir -p #{BUILD_DIR}/#{ORACLE_INSTANT_CLIENT_DIR}`
 
 indent "Downloading and extracting #{ORACLE_INSTANT_CLIENT_FILENAME}"
-result = `curl #{ORACLE_INSTANT_CLIENT_URL} -L -s -o - | tar -xvz -C #{BUILD_DIR}/#{ORACLE_INSTANT_CLIENT_DIR} -f - `
+`curl #{ORACLE_INSTANT_CLIENT_URL} -o instantclient-basic-linux.x64-11.2.0.3.0.zip`
+`unzip instantclient-basic-linux.x64-11.2.0.3.0.zip #{BUILD_DIR}/#{ORACLE_INSTANT_CLIENT_DIR}`
 
 unless $?.success?
   indent "Failure while downloading Oracle instant client archive: #{$?}"
