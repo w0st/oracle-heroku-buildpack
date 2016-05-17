@@ -40,14 +40,14 @@ end
 
 puts "-----> Successfully extracted #{ORACLE_INSTANT_CLIENT_FILENAME}"
 
-ORACLE_HOME = "#{ORACLE_INSTANT_CLIENT_DIR}/instantclient_11_2"
+ORACLE_HOME = "/app/vendor/oracle_instantclient/instantclient_11_2"
 
-ORACLE_NETWORK_ADMIN_DIR = "#{ORACLE_HOME}/network/admin"
+ORACLE_NETWORK_ADMIN_DIR = "#{ORACLE_INSTANT_CLIENT_DIR}/network/admin"
 `mkdir -p #{ORACLE_NETWORK_ADMIN_DIR}`
 
 puts '-----> Creating symlinks'
-`ln -s #{ORACLE_HOME}/libclntsh.so.11.1 #{ORACLE_HOME}/libclntsh.so`
-`ln -s #{ORACLE_HOME}/libocci.so.11.1 #{ORACLE_HOME}/libocci.so`
+`ln -s #{ORACLE_INSTANT_CLIENT_DIR}/libclntsh.so.11.1 #{ORACLE_HOME}/libclntsh.so`
+`ln -s #{ORACLE_INSTANT_CLIENT_DIR}/libocci.so.11.1 #{ORACLE_HOME}/libocci.so`
 
 
 TNSNAMES_FILENAME = ORACLE_CONFIG['tnsnames.ora']
@@ -75,7 +75,7 @@ end
 puts '-----> Create environment variables'
 indent 'Save ORACLE_HOME to ENV_DIR'
 
-open(File.join(ENV_DIR,'ORACLE_HOME'), 'w') do |f|
+open(File.join(ENV_DIR, 'ORACLE_HOME'), 'w') do |f|
   f.puts "#{ORACLE_HOME}"
   indent "ORACLE_HOME=#{ORACLE_HOME}"
 end
