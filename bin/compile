@@ -27,9 +27,6 @@ ORACLE_CONFIG = YAML.load_file("#{BUILD_DIR}/.oracle.yml")
 ORACLE_INSTANT_CLIENT_URL="https://s3.amazonaws.com/dtm-development/oracle_instantclient/instantclient-basic-linux.x64-#{ORACLE_VERSION}.zip"
 ORACLE_INSTANT_CLIENT_FILENAME=ORACLE_INSTANT_CLIENT_URL.split(/\//).last
 
-puts "-----> Installing libaio-dev"
-`apt-get install libaio-dev`
-
 indent "Making directory #{ORACLE_INSTANT_CLIENT_DIR}"
 `mkdir -p #{ORACLE_INSTANT_CLIENT_DIR}`
 
