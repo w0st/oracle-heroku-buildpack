@@ -46,8 +46,8 @@ ORACLE_NETWORK_ADMIN_DIR = "#{ORACLE_INSTANT_CLIENT_DIR}/network/admin"
 `mkdir -p #{ORACLE_NETWORK_ADMIN_DIR}`
 
 puts '-----> Creating symlinks'
-`ln -s #{ORACLE_INSTANT_CLIENT_DIR}/libclntsh.so.11.1 #{ORACLE_HOME}/libclntsh.so`
-`ln -s #{ORACLE_INSTANT_CLIENT_DIR}/libocci.so.11.1 #{ORACLE_HOME}/libocci.so`
+`ln -s #{ORACLE_INSTANT_CLIENT_DIR}/instantclient_11_2/libclntsh.so.11.1 #{ORACLE_HOME}/libclntsh.so`
+`ln -s #{ORACLE_INSTANT_CLIENT_DIR}/instantclient_11_2/libocci.so.11.1 #{ORACLE_HOME}/libocci.so`
 
 
 TNSNAMES_FILENAME = ORACLE_CONFIG['tnsnames.ora']
@@ -74,25 +74,27 @@ end
 
 puts '-----> Create environment variables'
 indent 'Save ORACLE_HOME to ENV_DIR'
-
-open(File.join(ENV_DIR, 'ORACLE_HOME'), 'w') do |f|
+ORACLE_HOME_FILE = File.join(ENV_DIR, 'ORACLE_HOME')
+`rm #{ORACLE_HOME_FILE}`
+open(ORACLE_HOME_FILE, 'w') do |f|
   f.puts "#{ORACLE_HOME}"
   indent "ORACLE_HOME=#{ORACLE_HOME}"
 end
 
-
 indent 'Save build LD_LIBRARY_PATH to ENV_DIR'
-
-open(File.join(ENV_DIR,'LD_LIBRARY_PATH'), 'w') do |f|
+LD_LYBRARY_PATH_FILE = File.join(ENV_DIR, 'LD_LIBRARY_PATH')
+`rm #{LD_LYBRARY_PATH_FILE}`
+open(LD_LYBRARY_PATH_FILE, 'w') do |f|
   f.puts "#{ORACLE_HOME}"
   indent "LD_LIBRARY_PATH=#{ORACLE_HOME}"
 end
 
 indent 'Save TNS_ADMIN to ENV_DIR'
-
-open(File.join(ENV_DIR,'TNS_ADMIN'), 'w') do |f|
-  f.puts "#{ORACLE_NETWORK_ADMIN_DIR}"
-  indent "TNS_ADMIN=#{ORACLE_NETWORK_ADMIN_DIR}"
+TNS_ADMIN_FILE = File.join(ENV_DIR, 'TNS_ADMIN')
+`rm #{TNS_ADMIN_FILE}`
+open(TNS_ADMIN_FILE, 'w') do |f|
+  f.puts "#{ORACLE_HOME}/network/admin"
+  indent "TNS_ADMIN=#{ORACLE_HOME}/network/admin"
 end
 
 puts '-----> Done!'
