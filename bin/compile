@@ -12,7 +12,7 @@ BUILD_DIR=ARGV[0]
 ENV_DIR=ARGV[2]
 
 
-ORACLE_INSTANT_CLIENT_DIR='/usr/lib/oracle_instantclient'
+ORACLE_INSTANT_CLIENT_DIR="#{BUILD_DIR}/vendor/oracle_instantclient"
 
 # if File.exists?(File.join(ORACLE_INSTANT_CLIENT_DIR, "instantclient_11_2", "libclntsh.so.11.1"))
 #   indent "Oracle Client already installed... skipping!"
