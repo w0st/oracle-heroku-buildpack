@@ -49,6 +49,10 @@ puts '-----> Creating symlinks'
 `ln -s #{ORACLE_INSTANT_CLIENT_DIR}/instantclient_11_2/libclntsh.so.11.1 #{ORACLE_HOME}/libclntsh.so`
 `ln -s #{ORACLE_INSTANT_CLIENT_DIR}/instantclient_11_2/libocci.so.11.1 #{ORACLE_HOME}/libocci.so`
 
+unless $?.success?
+  puts "-----> Failure to create symlinks: #{$?}"
+  exit 1
+end
 
 TNSNAMES_FILENAME = ORACLE_CONFIG['tnsnames.ora']
 if File.exists?(File.join(BUILD_DIR, TNSNAMES_FILENAME))
